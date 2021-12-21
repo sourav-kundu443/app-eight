@@ -25,15 +25,36 @@ const RegistrationForm = () => {
                     <form onSubmit={handleSubmit(submitResult)}>
                         <div className="row justify-content-center mt-3 mb-3">
                             <div className="col-12">
-                                <select className="form-select" aria-label="Default select example" defaultValue={'DEFAULT'} {...register('account', { required: true })} name="account">
+                                <select
+                                    className={classNames("form-select", { "is-invalid": errors.account })}
+                                    aria-label="Default select example"
+                                    
+                                    name="account"
+                                    {...register('account', { required: "This field is required" })}>
                                     <option disabled>Account Type</option>
-                                    <option value="savings">Savings Account</option>
-                                    <option value="current">Current Account</option>
-                                    <option value="salary">Salary Account</option>
-                                    <option value="FD">Fixed Deposit Account</option>
+                                    <option
+                                        value="savings">
+                                        Savings Account
+                                    </option>
+                                    <option
+                                        value="current">
+                                        Current Account
+                                    </option>
+                                    <option
+                                        value="salary">
+                                        Salary Account
+                                    </option>
+                                    <option
+                                        value="FD">
+                                        Fixed Deposit Account
+                                    </option>
                                 </select>
+                                {errors.account && (
+                                    <div className="invalid-feedback">{errors.account.message}</div>
+                                )}
                             </div>
                         </div>
+                        {/* Name fields */}
                         <div className="row justify-content-center mb-3">
                             <div className="col-md-4 col-sm-4">
                                 <div className="form-floating mb-3">
@@ -98,28 +119,28 @@ const RegistrationForm = () => {
                                 <h6>Gender</h6>
                                 <span className="form-check">
                                     <input
-                                        className={classNames("form-check-input",{"is-invalid": errors.gender})}
+                                        className={classNames("form-check-input", { "is-invalid": errors.gender })}
                                         type="radio" id="flexRadioDefault1"
                                         name="gender"
                                         {...register('gender', {
-                                            required : "This field is required",
-                                            }
+                                            required: "This field is required",
+                                        }
                                         )}
                                     />
                                     <label className="form-check-label"
                                         htmlFor="flexRadioDefault1">
                                         Male
                                     </label>
-                                    
+
                                 </span>
                                 <span className="form-check">
                                     <input
-                                        className={classNames("form-check-input",{"is-invalid": errors.gender})}
+                                        className={classNames("form-check-input", { "is-invalid": errors.gender })}
                                         type="radio" id="flexRadioDefault1"
-                                        name="gender"  
+                                        name="gender"
                                         {...register('gender', {
-                                            required : "This field is required",
-                                            }
+                                            required: "This field is required",
+                                        }
                                         )} />
                                     <label className="form-check-label"
                                         htmlFor="flexRadioDefault1">
@@ -127,36 +148,37 @@ const RegistrationForm = () => {
                                     </label>
                                 </span>
                                 <span className="form-check">
-                                    <input className={classNames("form-check-input",{"is-invalid": errors.gender})} 
-                                    type="radio" id="flexRadioDefault1" 
-                                    name="gender"  
-                                    {...register('gender', {
-                                        required : "This field is required",
+                                    <input className={classNames("form-check-input", { "is-invalid": errors.gender })}
+                                        type="radio" id="flexRadioDefault1"
+                                        name="gender"
+                                        {...register('gender', {
+                                            required: "This field is required",
                                         }
-                                    )}/>
+                                        )} />
                                     <label className="form-check-label" htmlFor="flexRadioDefault1">
                                         Others
                                     </label>
                                 </span>
                                 {errors.gender && (
-                                        <div className="invalid-feedback">{errors.gender.message}</div>
-                                    )}
+                                    <div className="invalid-feedback">{errors.gender.message}</div>
+                                )}
                             </div>
                             <div className="col-md-4 col-sm-12">
                                 <label htmlFor="birthday">Date of Birth: </label>
-                                <input 
-                                    type="date" 
-                                    className={classNames({"is-invalid": errors.dob})}
-                                    id="birthday" 
-                                    name="birthday"  
-                                    {...register('dob', 
-                                        { required: "This field is required"})} />
+                                <input
+                                    type="date"
+                                    className={classNames({ "is-invalid": errors.dob })}
+                                    id="birthday"
+                                    name="birthday"
+                                    {...register('dob',
+                                        { required: "This field is required" })} />
 
-                                    {errors.dob && (
-                                        <div className="invalid-feedback">{errors.dob.message}</div>
-                                    )}
+                                {errors.dob && (
+                                    <div className="invalid-feedback">{errors.dob.message}</div>
+                                )}
                             </div>
                         </div>
+                        {/* Email & mobile fields */}
                         <div className="row">
                             <div className="col-md-6 col-sm-8">
                                 <div className="form-floating mb-3">
@@ -191,6 +213,7 @@ const RegistrationForm = () => {
                                 </div>
                             </div>
                         </div>
+                        {/* Email & Mobile fields end */}
                         <div className="row">
                             <div className="col-8">
                                 <button type="submit" className="btn btn-success btn-sm">Submit</button>
